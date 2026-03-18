@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "8000:8000"
+    command: uvicorn contract_redliner.api.main:app --host 0.0.0.0 --port 8000
+  ui:
+    build: .
+    env_file: .env
+    ports:
+      - "8501:8501"
+    command: streamlit run src/contract_redliner/ui/streamlit_app.py --server.address 0.0.0.0 --server.port 8501

@@ -1,0 +1,33 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment files (keep .env.example, ignore actual secrets)
+.env
+
+# Logs
+*.log
+/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Bad asset download (HTML masquerading as image)
+assets/cf_logo.jpeg
+
+# Editor
+.vscode/
+.idea/

@@ -1,0 +1,8 @@
+{
+  "approved_confidentiality_term": "three (3) years",
+  "approved_jurisdictions": ["New York", "Delaware", "New Jersey"],
+  "preferred_governing_law": "New York",
+  "preferred_venue": "New York County, New York",
+  "scope": "low-risk mutual NDA only",
+  "fallback_rule": "Escalate to legal if any clause falls outside the approved playbook or confidence is low."
+}
