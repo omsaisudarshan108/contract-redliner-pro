@@ -8,7 +8,7 @@ from pathlib import Path
 import requests
 import streamlit as st
 
-API_BASE = os.getenv("API_BASE", "http://localhost:8000")
+API_BASE = os.getenv("API_BASE", "https://contract-redliner-pro.fly.dev")
 SAMPLE = Path(__file__).resolve().parents[3] / "data" / "nda_sample.txt"
 LOGO = Path(__file__).resolve().parents[4] / "assets" / "cf_logo.png"
 
