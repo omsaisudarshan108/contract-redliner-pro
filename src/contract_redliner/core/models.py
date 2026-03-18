@@ -97,3 +97,6 @@ class ExportRequest(BaseModel):
     title: str = "Redlined Contract"
     """Title written into the document and its metadata."""
     redlines: list[RedlineEntry]
+    reviewer: str | None = None
+    """Human reviewer name.  When set, overrides ``changed_by`` on every
+    redline so all track-change attribution in Word shows this person's name."""

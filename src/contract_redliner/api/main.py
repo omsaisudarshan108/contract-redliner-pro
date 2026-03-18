@@ -97,8 +97,9 @@ async def review_file_endpoint(file: UploadFile = File(...)):
 async def export_docx_endpoint(request: ExportRequest):
     if not request.redlines:
         raise HTTPException(status_code=400, detail="No redlines provided")
-    logger.info("DOCX export: %d redlines, title=%s", len(request.redlines), request.title)
-    blob = export_docx_with_track_changes(request.title, request.redlines)
+    logger.info("DOCX export: %d redlines, title=%s, reviewer=%s",
+                len(request.redlines), request.title, request.reviewer or "AI")
+    blob = export_docx_with_track_changes(request.title, request.redlines, reviewer=request.reviewer)
     headers = {"Content-Disposition": 'attachment; filename="redlined_contract.docx"'}
     return Response(
         content=blob,

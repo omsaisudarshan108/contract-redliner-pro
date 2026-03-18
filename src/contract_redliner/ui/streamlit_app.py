@@ -65,6 +65,12 @@ with st.sidebar:
     st.divider()
     st.subheader("Export")
     docx_title = st.text_input("DOCX title", value="Redlined Contract")
+    reviewer_name = st.text_input(
+        "Reviewer name",
+        placeholder="e.g. Jane Smith — Legal",
+        help="Your name is stamped on every track change in Word. "
+             "Leave blank to attribute changes to the AI.",
+    )
 
     # Health check indicator
     st.divider()
@@ -218,12 +224,20 @@ if "review_data" in st.session_state:
     # ── DOCX export ───────────────────────────────────────────────────────────
     st.divider()
     if redlines:
+        if reviewer_name:
+            st.caption(f"Track changes will be attributed to **{reviewer_name}**")
+        else:
+            st.caption("Track changes will be attributed to **AI Redliner** (enter a name above to override)")
+
         if st.button("📄 Generate tracked DOCX", type="secondary"):
             with st.spinner("Building DOCX…"):
                 try:
+                    export_payload: dict = {"title": docx_title, "redlines": redlines}
+                    if reviewer_name:
+                        export_payload["reviewer"] = reviewer_name
                     exp_resp = requests.post(
                         f"{API_BASE}/export/docx",
-                        json={"title": docx_title, "redlines": redlines},
+                        json=export_payload,
                         timeout=60,
                     )
                     exp_resp.raise_for_status()
